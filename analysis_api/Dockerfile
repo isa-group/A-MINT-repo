@@ -25,7 +25,8 @@ COPY src/ ./src/
 COPY tsconfig.json ./
 
 # Build TypeScript
-RUN NODE_OPTIONS="--max-old-space-size=8192" npm run build
+# RUN NODE_OPTIONS="--max-old-space-size=8192" npm run build
+RUN npm run build
 
 # Remove dev dependencies after build
 RUN npm prune --production

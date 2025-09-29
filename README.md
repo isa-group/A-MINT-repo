@@ -24,7 +24,6 @@ A-MINT is an advanced artificial intelligence platform that automates the extrac
 ### 🌐 Microservices Architecture
 - **A-MINT API**: Main pricing transformation engine
 - **Analysis API**: Specialized service for configuration analysis and validation
-- **Harvey Backend**: Intelligent conversational assistant for interactive analysis
 - **Web Frontend**: Modern and responsive user interface
 - **Choco API**: Complementary CSP validation service
 
@@ -38,12 +37,6 @@ A-MINT is an advanced artificial intelligence platform that automates the extrac
 │  ├─ Interactive dashboard                                       │
 │  ├─ Analysis visualization                                     │
 │  └─ Pricing file management                                    │
-├─────────────────────────────────────────────────────────────────┤
-│  Harvey Backend (Node.js + TypeScript)                         │
-│  ├─ Intelligent conversational assistant                        │
-│  ├─ Tool orchestration                                         │
-│  ├─ Session and file management                                │
-│  └─ AI API integration (Gemini)                                │
 ├─────────────────────────────────────────────────────────────────┤
 │  Analysis API (Node.js + TypeScript)                           │
 │  ├─ CSP analysis with MiniZinc                                 │
@@ -83,8 +76,6 @@ export OPENAI_API_KEY="your-openai-api-key"
 # For automatic rotation of multiple keys:
 export OPENAI_API_KEYS="key1,key2,key3"
 
-# For HARVEY (Conversational Assistant)
-export GEMINI_API_KEY="your-gemini-api-key"
 ```
 
 
@@ -112,7 +103,6 @@ Once started, you will have access to:
 - **Frontend**: http://localhost:80 - Main web interface
 - **A-MINT API**: http://localhost:8001 - Pricing transformation API
 - **Analysis API**: http://localhost:8002 - CSP analysis API
-- **Harvey Backend**: http://localhost:3001 - Conversational assistant
 - **Choco API**: http://localhost:8000 - Complementary validation API
 
 ## 🔧 System Usage
@@ -150,20 +140,6 @@ curl -X POST "http://localhost:8002/api/v1/pricing/analysis" \
   -F "operation=optimal" \
   -F "solver=minizinc" \
   -F "objective=minimize"
-```
-
-### 3. Using Harvey Assistant
-
-Harvey is an intelligent conversational assistant that facilitates interaction with all the system's capabilities:
-
-```bash
-# Example conversation with Harvey
-curl -X POST "http://localhost:3001/api/chat" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "message": "Analyze this pricing URL: https://example.com/pricing",
-    "sessionId": "my-session-123"
-  }'
 ```
 
 ## 📊 Data Structure and Specifications
@@ -256,15 +232,6 @@ A-MINT/
 │   ├── tsconfig.json               # TypeScript configuration
 │   └── Dockerfile                  # Docker image
 │
-├── harvey-backend/                 # Conversational Assistant
-│   ├── src/                        # TypeScript source code
-│   │   ├── api/                    # External API clients
-│   │   ├── services/               # Main services
-│   │   └── config.ts               # Configuration
-│   ├── uploads/                    # User uploaded files
-│   ├── package.json                # Node.js dependencies
-│   └── Dockerfile                  # Docker image
-│
 ├── frontend/                       # React Web Interface
 │   ├── src/                        # React + TypeScript source code
 │   │   ├── components/             # Reusable components
@@ -299,7 +266,6 @@ cp .env.example .env
 # 3. Install dependencies for local development
 pip install -r requirements.txt
 cd analysis_api && npm install && cd ..
-cd harvey-backend && npm install && cd ..
 cd frontend && npm install && cd ..
 ```
 
@@ -309,7 +275,6 @@ cd frontend && npm install && cd ..
 
 - **A-MINT API**: Swagger UI available at http://localhost:8001/docs
 - **Analysis API**: ReDoc at http://localhost:8002/redoc
-- **Harvey API**: Documentation at http://localhost:3001/docs
 
 ## 📄 License
 

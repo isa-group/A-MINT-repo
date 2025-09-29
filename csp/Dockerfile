@@ -6,7 +6,7 @@ WORKDIR /app
 # Copy the Spring Boot app source
 COPY csp/ /app/csp/
 
-ENV JAVA_TOOL_OPTIONS="-Xmx8g"
+# ENV JAVA_TOOL_OPTIONS="-Xmx8g"
 
 # Build the Spring Boot app
 WORKDIR /app/csp
