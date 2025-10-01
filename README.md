@@ -72,19 +72,26 @@ If installing locally, it is recommended to use docker compose. The Makefile all
 
 1. **For any provider compatible with the OpenAI client** (we have used Gemini 2.5):
 ```bash
+# If you use a single key:
 export OPENAI_API_KEY="your-openai-api-key"
-# For automatic rotation of multiple keys:
+# ALTERNATIVE: For automatic rotation of multiple keys:
 export OPENAI_API_KEYS="key1,key2,key3"
-
 ```
+We got our Gemini API key from [Google AI Studio](https://aistudio.google.com/).
+
+2. Alternatively, you can create a `.env` file in the root directory based on the provided `.env.docker.example` file:
+```bash
+cp .env.docker.example .env
+```
+Then edit the `.env` file to add your API keys as explained in the previous step. Only the `OPENAI_API_KEY` or `OPENAI_API_KEYS` variable is strictly required.
+
 
 
 ### Docker Installation (Recommended)
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/organization/A-MINT.git
-cd A-MINT
+# 1. Open the repository
+cd A-MINT-repo
 
 # 2. Create Docker network
 docker network create a-mint-network
@@ -205,7 +212,8 @@ A-MINT/
 ├── LICENSE                          # Project license
 ├── docker-compose.yml               # Main Docker configuration
 ├── requirements.txt                 # Main Python dependencies
-├── .env.example                     # Environment variables example
+├── .env.docker.example              # Environment variables example for Docker compose deployment
+├── .env.example                     # Environment variables example for local development
 ├── .gitignore                       # Git ignore file
 │
 ├── src/                            # A-MINT main source code
@@ -255,9 +263,8 @@ A-MINT/
 ### Development Environment Setup
 
 ```bash
-# 1. Fork and clone the repository
-git clone https://github.com/organization/A-MINT.git
-cd A-MINT
+# 1. Open project
+cd A-MINT-repo
 
 # 2. Configure environment variables for development
 cp .env.example .env
@@ -267,6 +274,7 @@ cp .env.example .env
 pip install -r requirements.txt
 cd analysis_api && npm install && cd ..
 cd frontend && npm install && cd ..
+cd csp && mvn clean install && cd ..
 ```
 
 ## 📚 Additional Documentation
